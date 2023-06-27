@@ -1,6 +1,6 @@
 "use strict";
 var DrawingApp = /** @class */ (function () {
-    function DrawingApp(canvas) {
+    function DrawingApp(canvas, button) {
         var _this = this;
         this.clickX = [];
         this.clickY = [];
@@ -50,6 +50,7 @@ var DrawingApp = /** @class */ (function () {
         context.lineWidth = 1;
         this.paint = false;
         this.canvas = canvas;
+        this.clearButton = button;
         this.context = context;
         this.redraw();
         this.createUserEvents();
@@ -64,6 +65,7 @@ var DrawingApp = /** @class */ (function () {
         canvas.addEventListener("touchmove", this.dragEventHandler);
         canvas.addEventListener("touchend", this.releaseEventHandler);
         canvas.addEventListener("touchcancel", this.cancelEventHandler);
+        this.clearButton.addEventListener("click", this.clearEventHandler);
     };
     DrawingApp.prototype.redraw = function () {
         var clickX = this.clickX;
@@ -108,15 +110,22 @@ var User = /** @class */ (function () {
 }());
 ///<reference path="User.ts"/>
 ///<reference path="DrawingApp.ts"/>
-// 1. Select the div element using the id property
 var app = document.getElementById("app");
-// 2. Create a new <p></p> element programmatically
+if (app === null) {
+    throw new Error("Could not find div#app");
+}
 var p = document.createElement("p");
-// 3. Add the text content
 p.textContent = new User("world").greet();
 // 4. Append the p element to the div element
-app === null || app === void 0 ? void 0 : app.appendChild(p);
+app.appendChild(p);
 var canvas = document.createElement("canvas");
-new DrawingApp(canvas);
-app === null || app === void 0 ? void 0 : app.appendChild(canvas);
+canvas.width = 500;
+canvas.height = 500;
+canvas.style.border = "1px solid black";
+var button = document.createElement("button");
+button.textContent = "Clear";
+new DrawingApp(canvas, button);
+app.appendChild(canvas);
+app.appendChild(document.createElement("br"));
+app.appendChild(button);
 //# sourceMappingURL=main.js.map

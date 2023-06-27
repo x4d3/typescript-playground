@@ -1,17 +1,25 @@
 ///<reference path="User.ts"/>
 ///<reference path="DrawingApp.ts"/>
 
-// 1. Select the div element using the id property
 const app = document.getElementById("app");
-// 2. Create a new <p></p> element programmatically
+if (app === null) {
+    throw new Error("Could not find div#app");
+}
 const p = document.createElement("p");
-// 3. Add the text content
 p.textContent = new User("world").greet();
 // 4. Append the p element to the div element
-app?.appendChild(p);
+app.appendChild(p);
 
 const canvas = document.createElement("canvas")
-new DrawingApp(canvas);
+canvas.width = 500;
+canvas.height = 500;
+canvas.style.border = "1px solid black";
 
-app?.appendChild(canvas);
+const button = document.createElement("button");
+button.textContent = "Clear";
+new DrawingApp(canvas, button);
 
+
+app.appendChild(canvas);
+app.appendChild(document.createElement("br"));
+app.appendChild(button);

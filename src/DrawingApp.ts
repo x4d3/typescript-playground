@@ -1,13 +1,14 @@
 class DrawingApp {
     private readonly canvas: HTMLCanvasElement;
+    private readonly clearButton: HTMLButtonElement;
     private readonly context: CanvasRenderingContext2D;
-    private paint: boolean;
 
+    private paint: boolean;
     private clickX: number[] = [];
     private clickY: number[] = [];
     private clickDrag: boolean[] = [];
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(canvas: HTMLCanvasElement, button: HTMLButtonElement) {
 
         let context = canvas.getContext("2d")!;
         context.lineCap = 'round';
@@ -17,6 +18,7 @@ class DrawingApp {
 
         this.paint = false;
         this.canvas = canvas;
+        this.clearButton = button;
         this.context = context;
 
         this.redraw();
@@ -35,6 +37,7 @@ class DrawingApp {
         canvas.addEventListener("touchmove", this.dragEventHandler);
         canvas.addEventListener("touchend", this.releaseEventHandler);
         canvas.addEventListener("touchcancel", this.cancelEventHandler);
+        this.clearButton.addEventListener("click", this.clearEventHandler);
     }
 
     private redraw() {
