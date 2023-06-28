@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsc --watch",
+    "minify": "terser dist/main.js -o dist/main.min.js --compress --mangle",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,5 +13,8 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "terser": "^5.18.2"
   }
 }
