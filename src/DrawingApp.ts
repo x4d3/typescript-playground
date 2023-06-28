@@ -1,4 +1,4 @@
-class DrawingApp {
+export class DrawingApp {
     private readonly canvas: HTMLCanvasElement;
     private readonly clearButton: HTMLButtonElement;
     private readonly context: CanvasRenderingContext2D;

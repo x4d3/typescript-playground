@@ -1,5 +1,6 @@
-///<reference path="User.ts"/>
-///<reference path="DrawingApp.ts"/>
+import {MusicDrawer} from "./MusicDrawer";
+import {User} from "./User";
+import {DrawingApp} from "./DrawingApp";
 
 const app = document.getElementById("app");
 if (app === null) {
@@ -23,3 +24,9 @@ new DrawingApp(canvas, button);
 app.appendChild(canvas);
 app.appendChild(document.createElement("br"));
 app.appendChild(button);
+const div = document.createElement("div");
+div.id = "music-sheet";
+
+app.appendChild(div);
+
+MusicDrawer.generateMusicSheet(div.id);
